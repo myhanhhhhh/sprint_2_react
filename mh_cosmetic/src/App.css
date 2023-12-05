@@ -1,0 +1,556 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/***************Css home***********/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+
+
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 7px;
+}
+
+.logo {
+  margin-left: 5%;
+  width: 140px;
+  cursor: pointer;
+}
+
+.nav-links li {
+  list-style: none;
+  display: inline-block;
+  margin: 10px 30px;
+}
+
+.nav-links li a {
+  text-decoration: none;
+  color: #fff;
+}
+
+.register-btn {
+  background: #fff;
+  color: #000;
+  padding: 8px 20px;
+  border-radius: 20px;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.container {
+  padding: 0 7%;
+}
+
+.header h1 {
+  font-size: 7vw;
+  font-weight: 500;
+  color: #fff;
+  text-align: center;
+  padding-top: 15%;
+}
+
+.search-bar {
+  background: #fff;
+  width: 60%;
+  margin: 30px auto;
+  padding: 6px 10px 6px 30px;
+  border-radius: 50px;
+}
+
+.search-bar form {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.search-bar form input {
+  display: block;
+  border: 0;
+  outline: none;
+  background: transparent;
+  font-size: 1vw;
+}
+
+.search-bar form button {
+  background: #ff5361;
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  border: 0;
+  outline: none;
+  cursor: pointer;
+}
+
+.search-bar form button img {
+  width: 15px;
+  margin-top: 7px;
+}
+.location-input{
+  flex: 0.5;
+}
+.search-bar form label{
+  font-weight: 600;
+}
+/*-----------------exclusives------------*/
+
+.sub-title{
+  margin: 50px 0 20px;
+  font-size: 2.2vw;
+  font-weight: 500;
+  color: #333;
+}
+.exclusives {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(200px, 1fr)); /* Số cột bạn muốn hiển thị */
+  grid-gap: 30px;
+}
+
+.exclusives div {
+  text-align: center;
+}
+
+.exclusives div img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.exclusives div span {
+  display: block;
+  text-align: center;
+  color: #fff;
+}
+
+.exclusives div h6, .exclusives div p {
+  margin: 0;
+  padding: 5px;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+/* Khi chiều rộng màn hình dưới 800px, chỉ hiển thị 1 cột */
+@media (max-width: 800px) {
+  .exclusives {
+    grid-template-columns: repeat(1, minmax(200px, 1fr));
+  }
+}
+
+
+/*------------------------ Trending ----------------*/
+.trending{
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
+  grid-gap: 30px;
+  margin-bottom: 30px;
+}
+.trending div img{
+  width: 100%;
+  border-radius:10px ;
+}
+/*-------------- Call to action ----------*/
+.cta{
+  margin: 80px 0;
+  background-image :linear-gradient(to right,#3f2321,transparent),url( https://i.pinimg.com/564x/c0/2a/da/c02ada593458db46a7f1a32562ea4a39.jpg) ;
+  background-size: cover;
+  background-position: center;
+  border-radius: 10px;
+  padding: 5%;
+  color: #beacac;
+}
+.cta h3{
+  font-size: 4vw;
+  line-height: 5.3vw;
+  font-weight: 400;
+}
+.cta p{
+  font-size: 15px;
+  margin: 10px 0;
+}
+/*---------------------Travellers Strories--------------------*/
+.stories{
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
+  grid-gap: 30px;
+  margin-bottom: 30px;
+}
+.stories div img{
+  width: 100%;
+  border-radius:10px ;
+}
+/*---------------  Listing Page ------------------*/
+.nav-white-listing{
+  background: #fff;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.05);
+}
+.search-bar-listing {
+  background: #fff;
+  width: 100%;
+  /*margin: 30px auto;*/
+  padding: 6px 10px 6px 30px;
+  border-radius: 50px;
+  border-bottom: 2px solid gray;
+}
+
+.search-bar-listing form {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.search-bar-listing form input {
+  display: block;
+  border: 0;
+  outline: none;
+  background: transparent;
+  font-size: 1vw;
+}
+
+.search-bar-listing form button {
+  background: #ff5361;
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  border: 0;
+  outline: none;
+  cursor: pointer;
+}
+
+.search-bar-listing form button img {
+  width: 15px;
+  margin-top: 7px;
+}
+/*.location-input{*/
+/*    flex: 0.5;*/
+/*}*/
+.search-bar-listing form label{
+  font-weight: 600;
+}
+.list-container{
+  margin-top: 50px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.left-col{
+  flex-basis: 70%;
+}
+.right-col{
+  flex-basis: 25%;
+}
+.left-col h1{
+  color: #333;
+  font-weight: 600;
+  margin-bottom: 30px;
+}
+.house{
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 30px 0;
+  border-top: 1px solid #ccc;
+}
+.house-img{
+  flex-basis: 40%;
+}
+.house-info{
+  flex-basis: 58%;
+  color: #555;
+}
+.house-img img{
+  width: 100%;
+  border-radius: 12px;
+}
+.house-info h3{
+  font-weight: 600;
+  color: #333;
+  font-size: 22px;
+  margin: 4px 0;
+}
+.house-price{
+  margin-top: 20%;
+  text-align: right;
+}
+.house-price h4{
+  font-size: 20px;
+}
+.house-price h4 span{
+  font-size: 16px;
+}
+.house-info i{
+  color: #ff5361;
+  font-size: 18px;
+  margin: 10px ;
+}
+.sidebar{
+  border: 1px solid #999;
+  padding: 20px 30px;
+  margin-top: 30px;
+}
+.sidebar h2{
+  font-weight: 500;
+}
+.sidebar h3{
+  font-weight: 500;
+  margin: 20px 0 10px;
+}
+.filter{
+  display: flex;
+  align-items: center;
+  color: #555;
+  margin-bottom: 10px;
+}
+.filter p{
+  flex: 1;
+}
+.filter input{
+  margin-right: 15px;
+  cursor: pointer;
+}
+.pagination{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 40px 0;
+}
+.pagination img{
+  width: 15px;
+  margin: 10px 20px;
+}
+.right-arrow{
+  transform: rotate(180deg);
+}
+.pagination span{
+  margin: 10px 8px;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.pagination .current{
+  background: #333;
+  color: #fff;
+}
+/*-----------------------------Details ---------------*/
+.house-details{
+  padding: 0 12%;
+}
+.house-title{
+  margin-top: 50px;
+}
+.house-title h1{
+  font-weight: 600;
+}
+.house-title .row{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: 10px 0;
+}
+.house-title span{
+  margin: 0 20px;
+}
+.house-title i{
+  color: #ff5361;
+}
+.gallery{
+  display: grid;
+  grid-gap: 10px;
+  grid-template-areas: 'first first . .' 'first first . .';
+  margin: 20px 0;
+}
+.gallery div img{
+  width: 100%;
+  display: block;
+  border-radius: 10px;
+}
+.gallery-img-1{
+  grid-area: first;
+}
+.small-details h2{
+  font-weight: 500;
+}
+.small-details h4{
+  text-align: right;
+  font-size: 22px;
+}
+.line{
+  border: 0;
+  height: 1px;
+  background: #ccc;
+  width: 100%;
+  max-width: 900px;
+  margin: 20px 0 50px;
+}
+.check-from{
+  margin: 30px 0;
+  background: #fff;
+  box-shadow: 0 0 30px rgba(0,0,0,0.3);
+  border-radius: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 10px 50px;
+}
+.check-from label{
+  display: block;
+}
+.check-from div{
+  padding: 20px;
+}
+.check-from input{
+  background:  transparent;
+  border: 0;
+  outline: none;
+}
+.check-from button{
+  background: #ff5361;
+  border: 0;
+  outline: none;
+  color: #fff;
+  padding: 18px;
+  width: 350px;
+  border-radius: 8px;
+  font-size: 16px;
+}
+.guest-field{
+  flex: 0.5;
+}
+.details-list{
+  list-style: none;
+  margin: 50px 0;
+}
+.details-list li{
+  margin-left: 50px;
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 20px;
+  color: #555;
+  position: relative;
+}
+.details-list li span{
+  display: block;
+  font-weight: 400;
+  font-size: 16px;
+}
+.details-list li i{
+  position: absolute;
+  top : 5px;
+  left: -40px;
+}
+.home-desc{
+  max-width: 700px;
+  margin-bottom: 50px;
+}
+.custom-text {
+  font-family: 'Your Desired Font', sans-serif; /* Thay 'Your Desired Font' bằng tên font bạn muốn sử dụng */
+  font-size: 24px;
+  color: #070706; /* Màu sắc chữ */
+  text-transform: uppercase; /* Chuyển đổi văn bản thành chữ in hoa */
+  letter-spacing: 2px; /* Khoảng cách giữa các chữ cái */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Hiệu ứng bóng đổ */
+}
+#row-299623123 {
+  max-width: 80%; /* Giới hạn chiều rộng tối đa của div thành 80% tổng thể */
+  margin: 0 auto; /* Căn giữa div trong tổng thể */
+}
+.footer-men{
+  background-color: #000;
+  color: #fff;
+}
+/*********login***********/
+@import url(https://fonts.googleapis.com/css?family=Inter:300);
+body{
+  padding:0;
+  margin:0;
+  font-family: 'Inter';
+}
+
+.bgvid.back {
+  position: fixed; right: 0; bottom: 0;
+  min-width: 100%; min-height: 100%;
+  width: auto; height: auto; z-index: -100;
+}
+.inner {
+  position: absolute;
+}
+
+/*LOGIN*/
+.inner-container{
+  margin-top: -20px;
+  width:450px;
+  height:450px;
+  position:absolute;
+  top:calc(50vh - 200px);
+  left:calc(50vw - 200px);
+  overflow:hidden;
+  border-radius: 7px;
+}
+
+.vid-container{
+  position:relative;
+  height:100vh;
+  overflow:hidden;
+  background-size: cover;
+  width: 100%;
+}
+
+
+
+@media screen and (max-width: 986px) {
+  .bgvid{
+    height: 100px!important;
+  }
+}
+
+@media screen and (min-width: 986px) {
+  .bgvid.back {
+    width: 100%;
+  }
+}
+/*.ms-auto {*/
+/*  margin-left: 30% !important;*/
+/*  text-align: center !important;*/
+/*}*/

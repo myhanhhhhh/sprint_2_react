@@ -1,0 +1,46 @@
+
+.brown-button {
+    background-color: white;
+    color: #3f2321;
+    border: 1px solid black; /* Viền 2px với màu nâu */
+
+}
+
+.brown-button:hover {
+    background-color: #c8ada7; /* Màu nền khi rê chuột vào */
+    border: 1px solid #c8ada7; /* Viền 2px với màu nâu */
+
+}
+.custom-select {
+    position: relative;
+    display: inline-block;
+}
+
+.custom-select::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    border: 6px solid transparent;
+    border-top: 6px solid #000;
+    pointer-events: none;
+}
+
+.custom-select select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: white;
+    padding: 8px 24px 8px 8px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+}
+
+.custom-select option[value="1"] {
+    background-color: green;
+}
+
+.custom-select option[value="2"] {
+    background-color: red;
+}
