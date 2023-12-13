@@ -6,6 +6,7 @@ import {toast} from "react-toastify";
 import {useNavigate, useParams} from "react-router-dom";
 import * as loginService from "../../service/UserService";
 import * as cartService from "../../service/CartService";
+import "./list_category.css"
 
 export function ListCategory() {
     const navigate = useNavigate();
@@ -40,10 +41,10 @@ export function ListCategory() {
             }
             const getUser = await loginService.getUser(jwtToken.sub);
             const res = await cartService.addToCart(idProduct, getUser.id, quantity);
-            if (res.status === 200){
+            if (res.status === 200) {
                 toast("Thêm vào giỏ hàng thành công!");
             }
-        }catch (e) {
+        } catch (e) {
 
         }
 
@@ -88,6 +89,7 @@ export function ListCategory() {
     const nextPage = () => {
         setPage(page + 1);
     }
+
     let content;
 
     switch (id) {
@@ -112,68 +114,66 @@ export function ListCategory() {
                 <h2>AA</h2>
                 {content}
                 <div className="col-12 d-flex justify-content-end mt-3 mb-3">
-                    {/*<div className="col-auto mx-1">*/}
-                    {/*    <input*/}
-                    {/*        className="form-control"*/}
-                    {/*        type="search"*/}
-                    {/*        placeholder="Tìm mùi hương"*/}
-                    {/*        aria-label="Search"*/}
-                    {/*        style={{ width: '150px' }}*/}
-                    {/*        onChange={(event) => {*/}
-                    {/*            const value = event.target.value;*/}
-                    {/*            // setSearchName(value);*/}
-                    {/*            setSearchFragrant(value);*/}
-                    {/*        }}*/}
-                    {/*        onKeyDown={handleKeyDown}*/}
-                    {/*    />*/}
-                    {/*</div>*/}
-                    <div className="col-auto mx-1">
-                        <input
-                            className="form-control"
-                            type="search"
-                            placeholder="Tìm theo tên"
-                            aria-label="Search"
-                            style={{width: '200px'}}
-                            onChange={(event) => {
-                                const value = event.target.value;
-                                setSearchName(value);
-                                // setSearchFragrant(value);
-                            }}
-                            onKeyDown={handleKeyDown}
-                        />
-
-                    </div>
-                    <div className="col-auto mx-1">
-                        <button className="btn btn-outline-primary text-center" type="button"
-                                onClick={handleSearch}>Tìm kiếm
-                        </button>
-                    </div>
                 </div>
-
-                <div className="exclusives mt-5">
+                <div className="trending-hanh">
                     {
                         products.length !== 0 ? (
                             products.map((product) => {
                                 return (
-                                    <div key={product.idProduct}>
-                                        <Link to={`/detail/${product.idProduct}`} className="text-decoration-none">
-                                            <img
-                                                src={product.firstImage}/>
-                                            <span>
-                                    <h6>{truncateString(product.nameProduct)}</h6>
-                                    <p>{vnd.format(product.priceProduct)}</p>
-                                </span>
-                                        </Link>
+                                    <Link key={product.idProduct} to={`/detail/${product.idProduct}`}
+                                          className="text-decoration-none"
+                                          style={{
+                                              display: "flex",
+                                              flexDirection: "column",
+                                              flex: "1"
+                                          }}>
+                                        <div className="image-product" style={{width: "235px", height: "235px"}}>
+                                            <div className="image-container">
+                                                <img style={{
+                                                    objectFit: "cover",
+                                                    width: "100%",
+                                                    height: "100%",
+                                                    marginLeft: "29px"
+                                                }}
+                                                     src={product.firstImage}/>
+                                                <span className="hover-text"
+                                                      onClick={() => getIntoCart(product.idProduct)}><ion-icon
+                                                    name="cart-outline"></ion-icon></span>
+                                            </div>
+                                        </div>
+                                        <div style={{
+                                            flexGrow: "1", padding: "10px 5px",
+                                            color: "black",
+                                            textAlign: "left",
+                                            fontFamily: "Nunito",
+                                            fontSize: "19px"
+                                        }}>{product.nameProduct}</div>
+                                        <div style={{display: "flex"}}>
+                                            <div style={{
+                                                marginTop: "auto",
+                                                lineHeight: "1.5",
+                                                textAlign: "center",
+                                                color: "#a39857",
+                                                fontFamily: "Nunito",
+                                                fontSize: "19px",
+                                                fontWeight: "bold"
+                                            }}>{vnd.format(product.priceProduct)}</div>
+                                            {/*<div style={{color:"black", marginLeft:"160px", fontSize:"30px", marginTop}}>*/}
+                                            {/*    <ion-icon name="cart-outline"></ion-icon>*/}
+                                            {/*</div>*/}
+                                        </div>
+
                                         <div className="card-footer d-flex align-items-end pt-3 px-0 pb-0 mt-auto">
-                                            <a href="src/component#" className="btn btn-outline-primary w-100"
+                                            <a href="#" className="btn btn-outline-primary w-100"
                                                onClick={() => getIntoCart(product.idProduct)}
                                             >Thêm vào giỏ hàng</a>
                                         </div>
-                                    </div>
+                                    </Link>
                                 );
                             })
-                        ) : (<p>Không tìm thấy!</p>)
+                        ) : (<p style={{textAlign:"center"}}>Không tìm thấy!</p>)
                     }
+
                 </div>
                 <div className="container d-flex align-items-center justify-content-center">
                     <div className="my-2">
@@ -181,30 +181,30 @@ export function ListCategory() {
                             <div className="ms-auto">
                                 <nav className="bottom" aria-label="Page navigation">
                                     <ul className="pagination mb-0 ">
-                                        {/*<li className="page-item">*/}
-                                        {/*    <a className={`page-link ${page === 0 ? "disabled" : ""}`}*/}
-                                        {/*       onClick={() => setPage(0)} tabIndex="-1" href="#"*/}
-                                        {/*       aria-disabled="true">《</a>*/}
-                                        {/*</li>*/}
+                                        <li className="page-item">
+                                            <a className={`page-link ${page === 0 ? "disabled" : ""}`}
+                                               onClick={() => setPage(0)} tabIndex="-1" href="#"
+                                               aria-disabled="true">《</a>
+                                        </li>
                                         <li className="page-item ">
                                             <a onClick={() => previousPage()}
-                                               className={`page-link ${page <= 0 ? "disabled" : ""}`} href="src/component#"
+                                               className={`page-link ${page <= 0 ? "disabled" : ""}`} href="#"
                                                tabIndex="-1"
                                                aria-disabled="true">〈 </a>
                                         </li>
                                         <li className="page-item" aria-current="page">
-                                            <a className="page-link" href="src/component#">{page + 1}/{totalPage}</a>
+                                            <a className="page-link" href="#">{page + 1}/{totalPage}</a>
                                         </li>
                                         <li className="page-item">
                                             <a onClick={() => nextPage()}
                                                className={`page-link ${page >= totalPage - 1 ? "disabled" : ""}`}
-                                               href="src/component#"> 〉 </a>
+                                               href="#"> 〉 </a>
                                         </li>
-                                        {/*<li className="page-item">*/}
-                                        {/*    <a className={`page-link ${page >= totalPage - 1 ? "disabled" : ""}`}*/}
-                                        {/*       href="#"*/}
-                                        {/*       onClick={() => setPage(totalPage - 1)}> 》 </a>*/}
-                                        {/*</li>*/}
+                                        <li className="page-item">
+                                            <a className={`page-link ${page >= totalPage - 1 ? "disabled" : ""}`}
+                                               href="#"
+                                               onClick={() => setPage(totalPage - 1)}> 》 </a>
+                                        </li>
                                     </ul>
                                 </nav>
                             </div>

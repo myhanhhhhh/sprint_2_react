@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import {Link, useNavigate} from "react-router-dom";
 import * as mainService from "../../service/MainService";
 import {Header} from "../header/Header";
+import {Footer} from "../footer/Footer";
 import "./main.css"
 
 export function Main() {
@@ -184,58 +185,80 @@ export function Main() {
 
                 <div className="container" style={{marginTop: "90px"}}>
                     <p className="main-page" style={{marginTop: "20px"}}>Gần đây đã thêm cửa hàng chúng tôi </p>
-                    <h2 className="sub-title" style={{textAlign: "center", marginTop: "-10px"}}>SẢN PHẨM NỔI BẬT</h2>
-                    <div className="exclusives">
+                    <h2 className="sub-title"
+                        style={{textAlign: "center", marginTop: "-10px", fontFamily: "Nunito",}}>SẢN PHẨM NỔI BẬT</h2>
+                    <div className="trending-hanh">
                         {
-
                             products.length !== 0 ? (
                                 products.map((product) => {
                                     return (
-                                        <div key={product.idProduct}>
-                                            <Link to={`/detail/${product.idProduct}`} className="text-decoration-none">
-                                                <div className="card" style={{width: "18rem"}}>
-                                                    <img src={product.firstImage} className="card-img-top" alt="..."/>
-                                                    <div className="card-body">
-                                                        <h6>{product.nameProduct}</h6>
-                                                        <p>{vnd.format(product.priceProduct)}</p>
-                                                    </div>
-                                                </div>
-                                            </Link>
-
-                                        </div>
+                                        <Link key={product.idProduct} to={`/detail/${product.idProduct}`}
+                                              className="text-decoration-none"
+                                              style={{
+                                                  display: "flex",
+                                                  flexDirection: "column",
+                                                  flex: "1"
+                                              }}>
+                                            <div style={{width: "235px", height: "235px"}}>
+                                                <img style={{
+                                                    objectFit: "cover",
+                                                    width: "100%",
+                                                    height: "100%",
+                                                    marginLeft: "29px"
+                                                }}
+                                                     src={product.firstImage}/>
+                                            </div>
+                                            <div style={{
+                                                flexGrow: "1", padding: "10px 5px",
+                                                color: "black",
+                                                textAlign: "left",
+                                                fontFamily: "Nunito",
+                                                fontSize: "19px"
+                                            }}>{product.nameProduct}</div>
+                                            <div style={{
+                                                marginTop: "auto",
+                                                lineHeight: "1.5",
+                                                textAlign: "center",
+                                                color: "#a39857",
+                                                fontFamily: "Nunito",
+                                                fontWeight: "bold",
+                                                fontSize: "19px"
+                                            }}>{vnd.format(product.priceProduct)}</div>
+                                        </Link>
                                     );
                                 })
-                        ) : (<p>Không tìm thấy!</p>)
+                            ) : (<p>Không tìm thấy!</p>)
                         }
 
                     </div>
                     <div>
-                        <h2 className="sub-title" style={{textAlign: "center", marginTop: "90px"}}>CÁC LOẠI SẢN
+                        <h2 className="sub-title"
+                            style={{textAlign: "center", marginTop: "90px", fontFamily: "Nunito",}}>CÁC LOẠI SẢN
                             PHẨM</h2>
                     </div>
                     <div className="trending" style={{marginTop: "10px"}}>
-                        <div className="text-center">
+                        <div className="text-center" style={{width: "301px", height: "301px", marginTop: "15px"}}>
                             <Link to={"/category/1"} className="text-decoration-none text-dark">
-                                <img
-                                    src="https://i.pinimg.com/564x/d3/80/c7/d380c7fd39b4d984a3c9ba38a15f4863.jpg"/>
+                                <img style={{height: "100%", width: "100%"}}
+                                     src="https://i.pinimg.com/564x/d3/80/c7/d380c7fd39b4d984a3c9ba38a15f4863.jpg"/>
                                 <h5 className="mt-3">SON</h5>
                             </Link>
                         </div>
-                        <div className="text-center">
+                        <div className="text-center" style={{marginTop: "15px"}}>
                             <Link to={"/category/2"} className="text-decoration-none text-dark">
                                 <img
                                     src="https://i.pinimg.com/564x/50/60/1a/50601a69b963bd4964fedd168bd8b3e4.jpg"/>
                                 <h5 className="mt-3">NƯỚC HOA</h5>
                             </Link>
                         </div>
-                        <div className="text-center">
+                        <div className="text-center" style={{width: "301px", height: "301px", marginTop: "15px"}}>
                             <Link to={"/category/3"} className="text-decoration-none text-dark">
-                                <img
-                                    src="https://i.pinimg.com/564x/7c/2c/af/7c2caf4f0bd0485e119ae24aa0159a2b.jpg"/>
+                                <img style={{height: "100%", width: "100%"}}
+                                     src="https://i.pinimg.com/564x/7c/2c/af/7c2caf4f0bd0485e119ae24aa0159a2b.jpg"/>
                                 <h5 className="mt-3">MAKE-UP</h5>
                             </Link>
                         </div>
-                        <div className="text-center">
+                        <div className="text-center" style={{marginTop: "15px"}}>
                             <Link to={"/category/4"} className="text-decoration-none text-dark">
                                 <img
                                     src="https://i.pinimg.com/564x/d8/8e/22/d88e2255011cfbccc81cc616ba9a4bfe.jpg"/>
@@ -248,6 +271,7 @@ export function Main() {
 
                     </div>
                 </div>
+            <Footer/>
             </div>
         </div>
     )

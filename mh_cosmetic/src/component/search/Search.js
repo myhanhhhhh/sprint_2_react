@@ -51,25 +51,35 @@ export function Search() {
         <div className="container">
             <h2>AA</h2>
             <h3 className="mt-5">Kết quả tìm kiếm:</h3>
-            <div className="exclusives mt-5">
+            <div className="trending-hanh">
                 {
                     products.length !== 0 ? (
                         products.map((product) => {
                             return (
-                                <div key={product.idProduct}>
-                                    <Link to={"/detail"} className="text-decoration-none">
-                                        <img
-                                            src={product.firstImage}/>
-                                        <span>
-                                    <h6>{truncateString(product.nameProduct)}</h6>
-                                    <p>{vnd.format(product.priceProduct)}</p>
-                                </span>
-                                    </Link>
-                                </div>
+                                <Link key={product.idProduct} to={`/detail/${product.idProduct}`}
+                                      className="text-decoration-none"
+                                      style={{display: "flex", flexDirection: "column", flex: "1"}}>
+                                    <div style={{width: "235px", height: "235px"}}>
+                                        <img style={{objectFit: "cover", width: "100%", height: "100%"}}
+                                             src={product.firstImage}/>
+                                    </div>
+                                    <div style={{
+                                        flexGrow: "1", padding: "10px 5px",
+                                        color: "black",
+                                        textAlign: "left"
+                                    }}>{product.nameProduct}</div>
+                                    <div style={{
+                                        marginTop: "auto",
+                                        lineHeight: "1.5",
+                                        textAlign: "center",
+                                        color: "#a39857"
+                                    }}>{vnd.format(product.priceProduct)}</div>
+                                </Link>
                             );
                         })
                     ) : (<p>Không tìm thấy!</p>)
                 }
+
             </div>
             <div className="container d-flex align-items-center justify-content-center">
                 <div className="my-2">
@@ -79,24 +89,24 @@ export function Search() {
                                 <ul className="pagination mb-0 ">
                                     <li className="page-item">
                                         <a className={`page-link ${page === 0 ? "disabled" : ""}`}
-                                           onClick={() => setPage(0)} tabIndex="-1" href="src/component#"
+                                           onClick={() => setPage(0)} tabIndex="-1" href="#"
                                            aria-disabled="true">《</a>
                                     </li>
                                     <li className="page-item ">
                                         <a onClick={() => previousPage()}
-                                           className={`page-link ${page <= 0 ? "disabled" : ""}`} href="src/component#" tabIndex="-1"
+                                           className={`page-link ${page <= 0 ? "disabled" : ""}`} href="#" tabIndex="-1"
                                            aria-disabled="true">〈 </a>
                                     </li>
                                     <li className="page-item" aria-current="page">
-                                        <a className="page-link" href="src/component#">{1 + page}/{totalPage}</a>
+                                        <a className="page-link" href="#">{1 + page}/{totalPage}</a>
                                     </li>
                                     <li className="page-item">
                                         <a onClick={() => nextPage()}
                                            className={`page-link ${page >= totalPage - 1 ? "disabled" : ""}`}
-                                           href="src/component#"> 〉 </a>
+                                           href="#"> 〉 </a>
                                     </li>
                                     <li className="page-item">
-                                        <a className={`page-link ${page >= totalPage - 1 ? "disabled" : ""}`} href="src/component#"
+                                        <a className={`page-link ${page >= totalPage - 1 ? "disabled" : ""}`} href="#"
                                            onClick={() => setPage(totalPage - 1)}> 》 </a>
                                     </li>
                                 </ul>

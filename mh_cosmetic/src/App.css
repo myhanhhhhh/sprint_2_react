@@ -141,6 +141,7 @@ nav {
   font-size: 2.2vw;
   font-weight: 500;
   color: #333;
+
 }
 .exclusives {
   display: grid;
@@ -180,9 +181,10 @@ nav {
 /*------------------------ Trending ----------------*/
 .trending{
   display: grid;
-  grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
+  grid-template-columns: repeat(4, minmax(200px, 1fr)); /* Số cột bạn muốn hiển thị */
   grid-gap: 30px;
-  margin-bottom: 30px;
+
+
 }
 .trending div img{
   width: 100%;
@@ -554,3 +556,8 @@ body{
 /*  margin-left: 30% !important;*/
 /*  text-align: center !important;*/
 /*}*/
+
+.detail{
+  margin-right: 0.5rem !important;
+  margin-left: 0rem !important;
+}

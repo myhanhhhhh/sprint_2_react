@@ -21,7 +21,7 @@ export function Cart() {
 
 
     useEffect(() => {
-        document.title = "MH Cosmetic - Gio hang";
+        document.title = "MT Cosmetic - Gio hang";
         getAllProduct();
     }, [flag]);
 
@@ -33,7 +33,6 @@ export function Cart() {
             setProducts(result.data);
             setId(user.id);
         } catch (e) {
-
         }
     }
 
@@ -124,12 +123,12 @@ export function Cart() {
     return (
         <div>
             <Header/>
-            <section className=" my-5" style={{backgroundColor:"#ebeae8",height:"55rem"}}>
+            <section className=" my-5" style={{backgroundColor: "#ebeae8", height: "55rem"}}>
                 <div className="container">
                     <div className="row">
                         <div className="col-lg-9 mt-5">
-                            <div className="card border shadow-0" style={{marginTop:"50px"}}>
-                                <div className="m-4"style={{height:"10rem"}}>
+                            <div className="card border shadow-0" style={{marginTop: "50px"}}>
+                                <div className="m-4" style={{height: "30rem"}}>
                                     <h4 className="card-title mb-4">Giỏ Hàng Của Bạn</h4>
                                     {
                                         products.length !== 0 ? (
@@ -192,22 +191,27 @@ export function Cart() {
 
                                 </div>
 
-                                <div className="border-top pt-4 mx-4 mb-4">
-                                    <p><i className="fas fa-truck text-muted fa-lg"></i> Giao hàng miễn phí toàn quốc.
-                                    </p>
-                                    <p className="text-muted">Dựa trên kinh nghiệm 15 năm chinh chiến trong ngành làm đẹp và
-                                        hợp tác với các tập đoàn mỹ phẩm nổi tiếng trên Thế giới, Makeup Artist Quách Ánh
-                                        cùng những cộng sự của mình đã tạo nên thương hiệu mỹ phẩm Lemonade. Với các dòng sản phẩm
-                                        đa công năng và tiện dụng được nghiên cứu dựa trên khí hậu và làn da của phụ nữ Việt, MH
-                                        giúp bạn hoàn thiện vẻ đẹp một cách nhanh chóng và dễ dàng hơn: Dễ dàng sử dụng, dễ dàng
-                                        kết hợp và dễ dàng mang đi.
-                                    </p>
-                                </div>
+                                {/*<div className="border-top pt-4 mx-4 mb-4">*/}
+                                {/*    <p><i className="fas fa-truck text-muted fa-lg"></i> Giao hàng miễn phí toàn quốc.*/}
+                                {/*    </p>*/}
+                                {/*    <p className="text-muted">Dựa trên kinh nghiệm 15 năm chinh chiến trong ngành làm*/}
+                                {/*        đẹp và*/}
+                                {/*        hợp tác với các tập đoàn mỹ phẩm nổi tiếng trên Thế giới, Makeup Artist Quách*/}
+                                {/*        Ánh*/}
+                                {/*        cùng những cộng sự của mình đã tạo nên thương hiệu mỹ phẩm Lemonade. Với các*/}
+                                {/*        dòng sản phẩm*/}
+                                {/*        đa công năng và tiện dụng được nghiên cứu dựa trên khí hậu và làn da của phụ nữ*/}
+                                {/*        Việt, MH*/}
+                                {/*        giúp bạn hoàn thiện vẻ đẹp một cách nhanh chóng và dễ dàng hơn: Dễ dàng sử dụng,*/}
+                                {/*        dễ dàng*/}
+                                {/*        kết hợp và dễ dàng mang đi.*/}
+                                {/*    </p>*/}
+                                {/*</div>*/}
                             </div>
                         </div>
 
                         <div className="col-lg-3 mt-5">
-                            <div className="card mb-3 border shadow-0" style={{marginTop:"50px"}}>
+                            <div className="card mb-3 border shadow-0" style={{marginTop: "50px"}}>
 
                             </div>
                             <div className="card shadow-0 border">
@@ -238,7 +242,8 @@ export function Cart() {
                                                            onError={onError}/>
                                         </PayPalScriptProvider>
                                         <Link to="/list">
-                                            <a href="src/component#" className="btn btn-light w-100 border mt-2"> Tiếp tục mua
+                                            <a href="src/component#" className="btn btn-light w-100 border mt-2"> Tiếp
+                                                tục mua
                                                 hàng</a>
                                         </Link>
 

@@ -40,7 +40,7 @@ export function Login() {
                         <div className="box">
                             <h1>ĐĂNG NHẬP</h1>
                             <input type="text" name="userName" value={form.userName} onChange={handleChange} placeholder="Tên đăng nhập"/>
-                            <input type="password" name="pass" value={form.password} onChange={handleChange} placeholder="Mật khẩu"/>
+                            <input type="password" name="password" value={form.password} onChange={handleChange} placeholder="Mật khẩu"/>
                             <button type="submit">Đăng nhập</button>
                             <p>Quên mật khẩu? <span className="signup">Đăng kí.</span></p>
                         </div>

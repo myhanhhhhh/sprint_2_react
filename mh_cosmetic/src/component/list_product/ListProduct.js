@@ -144,30 +144,49 @@ export function ListProduct() {
                     </div>
                 </div>
 
-                <div className="exclusives mt-5">
+                <div className="trending-hanh">
                     {
                         products.length !== 0 ? (
                             products.map((product) => {
                                 return (
-                                    <div key={product.idProduct}>
-                                        <Link to={`/detail/${product.idProduct}`} className="text-decoration-none">
-                                            <img
-                                                src={product.firstImage}/>
-                                            <span>
-                                    <h6>{truncateString(product.nameProduct)}</h6>
-                                    <p>{vnd.format(product.priceProduct)}</p>
-                                </span>
-                                        </Link>
-                                        {/*<div className="card-footer d-flex align-items-end pt-3 px-0 pb-0 mt-auto">*/}
-                                        {/*    <a href="src/component#" className="btn btn-outline-primary w-100"*/}
-                                        {/*       onClick={() => getIntoCart(product.idProduct)}*/}
-                                        {/*    >Thêm vào giỏ hàng</a>*/}
-                                        {/*</div>*/}
-                                    </div>
+                                    <Link key={product.idProduct} to={`/detail/${product.idProduct}`}
+                                          className="text-decoration-none"
+                                          style={{
+                                              display: "flex",
+                                              flexDirection: "column",
+                                              flex: "1"
+                                          }}>
+                                        <div style={{width: "235px", height: "235px"}}>
+                                            <img style={{
+                                                objectFit: "cover",
+                                                width: "100%",
+                                                height: "100%",
+                                                marginLeft: "29px"
+                                            }}
+                                                 src={product.firstImage}/>
+                                        </div>
+                                        <div style={{
+                                            flexGrow: "1", padding: "10px 5px",
+                                            color: "black",
+                                            textAlign: "left",
+                                            fontFamily: "Nunito",
+                                            fontSize: "19px"
+                                        }}>{product.nameProduct}</div>
+                                        <div style={{
+                                            marginTop: "auto",
+                                            lineHeight: "1.5",
+                                            textAlign: "center",
+                                            color: "#a39857",
+                                            fontFamily: "Nunito",
+                                            fontSize: "19px",
+                                            fontWeight: "bold"
+                                        }}>{vnd.format(product.priceProduct)}</div>
+                                    </Link>
                                 );
                             })
                         ) : (<p>Không tìm thấy!</p>)
                     }
+
                 </div>
                 <div className="container d-flex align-items-center justify-content-center">
                     <div className="my-2">
@@ -183,17 +202,17 @@ export function ListProduct() {
                                         <li className="page-item ">
                                             <a onClick={() => previousPage()}
                                                className={`page-link ${page <= 0 ? "disabled" : ""}`}
-                                               href="src/component#"
+                                               href="#"
                                                tabIndex="-1"
                                                aria-disabled="true">〈 </a>
                                         </li>
                                         <li className="page-item" aria-current="page">
-                                            <a className="page-link" href="src/component#">{1 + page}/{totalPage}</a>
+                                            <a className="page-link" href="#">{1 + page}/{totalPage}</a>
                                         </li>
                                         <li className="page-item">
                                             <a onClick={() => nextPage()}
                                                className={`page-link ${page >= totalPage - 1 ? "disabled" : ""}`}
-                                               href="src/component#"> 〉 </a>
+                                               href="#"> 〉 </a>
                                         </li>
                                         {/*<li className="page-item">*/}
                                         {/*    <a className={`page-link ${page >= totalPage - 1 ? "disabled" : ""}`}*/}
