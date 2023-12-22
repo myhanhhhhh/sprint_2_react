@@ -26,3 +26,12 @@ export const decreaseQuantity = async (idUser, idProduct) => {
     console.log(res)
     return res;
 };
+
+export const sumCart = async (idUser) => {
+   try {
+       const res = await axios.post(`http://localhost:8080/api/cart/sumCart?idUser=${idUser}`);
+       return res;
+   }catch (e){
+       return []
+   }
+};

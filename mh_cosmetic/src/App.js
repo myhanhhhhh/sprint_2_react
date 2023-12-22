@@ -15,6 +15,7 @@ import {Detail} from "./component/detail/Detail";
 import {Search} from "./component/search/Search";
 import {ListCategory} from "./component/list_category/ListCategory";
 import {Introduce} from "./component/introduce/Introduce";
+import {History} from "./component/customer/History";
 
 function App() {
     return (
@@ -27,6 +28,7 @@ function App() {
                 <Route path="/detail/:id" element={<Detail/>}/>
                 <Route path="/cart" element={<Cart/>}/>
                 <Route path="/customer" element={<Customer/>}/>
+                <Route path="/history" element={<History/>}/>
                 <Route path="/search/:searchName" element={<Search/>}/>
                 <Route path="/category/:id" element={<ListCategory/>}/>
             </Routes>

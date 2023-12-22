@@ -3,6 +3,7 @@ import {useNavigate} from "react-router-dom";
 import * as userService from "../../service/UserService";
 import * as cartService from "../../service/CartService";
 import * as orderService from "../../service/OrderService";
+// import * as productService from "../../service/ProductService";
 import Swal from 'sweetalert2';
 import {toast} from "react-toastify";
 import {PayPalButtons, PayPalScriptProvider} from "@paypal/react-paypal-js";
@@ -45,16 +46,28 @@ export function Cart() {
     } catch (e) {
 
     }
-
     const deleteCart = async (idProduct, idUser) => {
-        const res = await cartService.deleteCart(idUser, idProduct);
-        if (res.status === 200) {
-            toast.success("Xoa thanh cong");
-        } else {
-            setFlag(!flag);
-        }
-        getAllProduct();
-    }
+        Swal.fire({
+            title: 'Bạn có muốn xóa sản phẩm không ?',
+            text: 'Lưu ý hành động này không hoàn tác!',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Vang, toi muon xoa',
+            cancelButtonText: 'khong',
+            reverseButtons: true,
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                const res = await cartService.deleteCart(idUser, idProduct);
+                if (res.status === 200) {
+                    toast.success("Xoa thanh cong");
+                } else {
+                    setFlag(!flag);
+                }
+                getAllProduct();
+            }
+        });
+    };
+
 
     const increase = async (idProduct, idUser) => {
         await cartService.increaseQuantity(idUser, idProduct);
@@ -62,31 +75,18 @@ export function Cart() {
         getAllProduct();
     }
 
+
     const decrease = async (idProduct, idUser, quantity) => {
-        if (quantity = 1) {
-            Swal.fire({
-                title: 'Bạn có muốn xóa sản phẩm không ?',
-                text: 'Lưu ý hành động này không hoàn tác!',
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonText: 'Vang, toi muon xoa',
-                cancelButtonText: 'khong',
-                reverseButtons: true,
-            }).then(async (result) => {
-                if (result.isConfirmed) {
-                    await cartService.decreaseQuantity(idUser, idProduct);
-                    getAllProduct();
-                    toast.success("oke");
-                } else if (result.dismiss === Swal.DismissReason.cancel) {
-                    Swal.fire("da huy", "san pham ban van con trong gio hang", "info");
-                }
-            });
+        if (quantity === 1) {
+            await cartService.decreaseQuantity(idUser, idProduct);
+            getAllProduct();
         } else {
             await cartService.decreaseQuantity(idUser, idProduct);
             setFlag(!flag);
             getAllProduct();
         }
-    }
+    };
+
 
     const createOrder = (data, actions) => {
         if (sumPayment <= 0) {
@@ -109,7 +109,7 @@ export function Cart() {
         try {
             await orderService.createOrder(id);
             navigate('/')
-            toast.success("oke");
+            toast.success("thanh toán thành công");
         } catch (error) {
             console.error('Error handling payment success: ', error);
         }
@@ -123,18 +123,25 @@ export function Cart() {
     return (
         <div>
             <Header/>
-            <section className=" my-5" style={{backgroundColor: "#ebeae8", height: "55rem"}}>
+            <section className=" my-5" style={{backgroundColor: "#ebeae8",}}>
                 <div className="container">
                     <div className="row">
                         <div className="col-lg-9 mt-5">
                             <div className="card border shadow-0" style={{marginTop: "50px"}}>
-                                <div className="m-4" style={{height: "30rem"}}>
+                                <div className="m-4">
                                     <h4 className="card-title mb-4">Giỏ Hàng Của Bạn</h4>
                                     {
                                         products.length !== 0 ? (
                                             products.map((product) => {
                                                 return (
                                                     product.quantity > 0 && <div className="row gy-3 mb-4">
+                                                        {/*<div style={{margin: "0 3% 0 -12%"}}>*/}
+                                                        {/*    {products.numberProduct === 0 ? null : (*/}
+                                                        {/*        <input*/}
+                                                        {/*            onChange={() => handleCheckboxChange(products.id, products.quantity, products.idProduct)}*/}
+                                                        {/*            type="checkbox"/>*/}
+                                                        {/*    )}*/}
+                                                        {/*</div>*/}
                                                         <div className="col-lg-5">
                                                             <div className="me-lg-5">
                                                                 <div className="d-flex">
@@ -177,36 +184,31 @@ export function Cart() {
                                                         <div
                                                             className="col-lg col-sm-6 d-flex justify-content-sm-center justify-content-md-start justify-content-lg-center justify-content-xl-end mb-2 my-4">
                                                             <div className="float-md-end">
-                                                                <a href="src/component#"
+                                                                <a href="#"
                                                                    className="btn btn-light border text-danger icon-hover-danger"
-                                                                   onClick={() => deleteCart(product.idProduct, product.idUser)}>Xóa</a>
+                                                                   onClick={() => deleteCart(product.idProduct, product.idUser)}>X</a>
                                                             </div>
                                                         </div>
                                                     </div>
 
                                                 );
                                             })
-                                        ) : (<p>Giỏ hàng trống.</p>)
+                                        ) : (<p>Giỏ hàng của bạn chưa có sản phẩm nào.</p>)
                                     }
 
                                 </div>
 
-                                {/*<div className="border-top pt-4 mx-4 mb-4">*/}
-                                {/*    <p><i className="fas fa-truck text-muted fa-lg"></i> Giao hàng miễn phí toàn quốc.*/}
-                                {/*    </p>*/}
-                                {/*    <p className="text-muted">Dựa trên kinh nghiệm 15 năm chinh chiến trong ngành làm*/}
-                                {/*        đẹp và*/}
-                                {/*        hợp tác với các tập đoàn mỹ phẩm nổi tiếng trên Thế giới, Makeup Artist Quách*/}
-                                {/*        Ánh*/}
-                                {/*        cùng những cộng sự của mình đã tạo nên thương hiệu mỹ phẩm Lemonade. Với các*/}
-                                {/*        dòng sản phẩm*/}
-                                {/*        đa công năng và tiện dụng được nghiên cứu dựa trên khí hậu và làn da của phụ nữ*/}
-                                {/*        Việt, MH*/}
-                                {/*        giúp bạn hoàn thiện vẻ đẹp một cách nhanh chóng và dễ dàng hơn: Dễ dàng sử dụng,*/}
-                                {/*        dễ dàng*/}
-                                {/*        kết hợp và dễ dàng mang đi.*/}
-                                {/*    </p>*/}
-                                {/*</div>*/}
+                                <div className="border-top pt-4 mx-4 mb-4">
+                                    <p><i className="fas fa-truck text-muted fa-lg"></i> Giao hàng miễn phí toàn quốc.
+                                    </p>
+                                    <p className="text-muted">Dựa trên kinh nghiệm 15 năm chinh chiến trong ngành làm
+                                        đẹp và hợp tác với các tập đoàn mỹ phẩm nổi tiếng trên Thế giới, Makeup Artist
+                                        Quách Ánh cùng những cộng sự của mình đã tạo nên thương hiệu mỹ phẩm Lemonade.
+                                        Với các dòng sản phẩm đa công năng và tiện dụng được nghiên cứu dựa trên khí hậu
+                                        và làn da của phụ nữ Việt, MH giúp bạn hoàn thiện vẻ đẹp một cách nhanh chóng và
+                                        dễ dàng hơn: Dễ dàng sử dụng, dễ dàng kết hợp và dễ dàng mang đi.
+                                    </p>
+                                </div>
                             </div>
                         </div>
 
@@ -233,25 +235,29 @@ export function Cart() {
                                         <p className="mb-2">Tổng tiền:</p>
                                         <p className="mb-2 fw-bold">{vnd.format(sum + sum * 8 / 100)}</p>
                                     </div>
-
                                     <div className="mt-3">
                                         <PayPalScriptProvider
-                                            options={{"client-id": "ATVLu4Mi0WmojMeUtCh-wTtCBb37GExzwi18B7kLRGSX9bUvnLq92Rnm02UnBCRPu_KGIgnkFOCOP94E"}}
+                                            options={{"client-id": "ATJNK5Rh5M6VAYoYRo6Iq3dnQj5UGy6DThb7qpLNfV6hG3z5jOc1azM1vD_tbzgPbUpeIo9ioc50VLz1"}}
                                         >
                                             <PayPalButtons createOrder={createOrder} onApprove={onApprove}
                                                            onError={onError}/>
                                         </PayPalScriptProvider>
-                                        <Link to="/list">
-                                            <a href="src/component#" className="btn btn-light w-100 border mt-2"> Tiếp
-                                                tục mua
-                                                hàng</a>
-                                        </Link>
 
+                                        {/*}*/}
+                                        {/*<PayPalScriptProvider*/}
+                                        {/*    options={{"client-id": "ATVLu4Mi0WmojMeUtCh-wTtCBb37GExzwi18B7kLRGSX9bUvnLq92Rnm02UnBCRPu_KGIgnkFOCOP94E"}}*/}
+                                        {/*>*/}
+                                        {/*    <PayPalButtons createOrder={createOrder} onApprove={onApprove}*/}
+                                        {/*                   onError={onError}/>*/}
+                                        {/*</PayPalScriptProvider>*/}
+                                        <Link to="/list">
+                                            <a href="#" className="btn btn-light w-100 border mt-2"> Tiếp
+                                                tục mua hàng</a>
+                                        </Link>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </section>

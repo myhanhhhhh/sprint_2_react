@@ -558,6 +558,27 @@ body{
 /*}*/
 
 .detail{
-  margin-right: 0.5rem !important;
+  margin-right: 7.5rem !important;
   margin-left: 0rem !important;
 }
+
+/*.cart__product-quantity {*/
+/*  color: #813531;*/
+/*  position: absolute;*/
+/*  background: white;*/
+/*  width: 24px;*/
+/*  height: 24px;*/
+/*  display: flex;*/
+/*  align-items: center;*/
+/*  justify-content: center;*/
+/*  border-radius: 50%;*/
+/*  top: -10px;*/
+/*  right: -12px;*/
+/*  font-weight: 600;*/
+/*  font-size: 12px;*/
+/*}*/
+
+
+
+
+

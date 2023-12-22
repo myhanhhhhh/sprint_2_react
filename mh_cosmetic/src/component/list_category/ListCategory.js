@@ -137,8 +137,7 @@ export function ListCategory() {
                                                 }}
                                                      src={product.firstImage}/>
                                                 <span className="hover-text"
-                                                      onClick={() => getIntoCart(product.idProduct)}><ion-icon
-                                                    name="cart-outline"></ion-icon></span>
+                                                      onClick={() => getIntoCart(product.idProduct)}></span>
                                             </div>
                                         </div>
                                         <div style={{
@@ -158,9 +157,9 @@ export function ListCategory() {
                                                 fontSize: "19px",
                                                 fontWeight: "bold"
                                             }}>{vnd.format(product.priceProduct)}</div>
-                                            {/*<div style={{color:"black", marginLeft:"160px", fontSize:"30px", marginTop}}>*/}
-                                            {/*    <ion-icon name="cart-outline"></ion-icon>*/}
-                                            {/*</div>*/}
+                                            <div style={{color:"black", marginLeft:"160px", fontSize:"15px"}}>
+                                               Con lai: {product.quantityProduct}
+                                            </div>
                                         </div>
 
                                         <div className="card-footer d-flex align-items-end pt-3 px-0 pb-0 mt-auto">

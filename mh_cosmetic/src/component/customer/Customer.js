@@ -2,13 +2,17 @@ import React, {useEffect, useState} from "react";
 import * as userService from "../../service/UserService";
 import * as customerService from "../../service/CustomerService";
 import {Header} from "../header/Header";
+import moment from "moment";
+import {ErrorMessage, Field, Form, Formik} from "formik";
+import "./customer.css"
+
 export function Customer() {
     const [customers, setCustomers] = useState(null);
     const [histories, setHistories] = useState([]);
     const vnd = new Intl.NumberFormat('vi-VN', {style: 'currency', currency: 'VND'})
 
     useEffect(() => {
-        document.title = 'MH Cosmetic - Khach hang';
+        document.title = 'MT Cosmetic - Khach hang';
         getCustomer();
         getHistory();
     }, []);
@@ -29,91 +33,95 @@ export function Customer() {
         const res = await customerService.getHistory(user.id);
         setHistories(res.data);
     }
+    const formatDate = (timeString) => {
+        const momentTime = moment(timeString, "HH:mm:ss.SSSSSS");
+        const formattedTime = momentTime.format("HH:mm:ss");
+        return formattedTime;
+    };
 
-    return(
-        <div>
+    if (!customers) {
+        return null;
+    }
+
+    return (
+        <>
             <Header/>
-            <div className="pt-5 mx-auto mt-5">
-                <fieldset className="form-input shadow mx-auto" style={{
-                    borderRadius: "20px",
-                    border: "1px solid black",
-                    height: "auto",
-                    width: "40%",
-                    padding: "20px"
-                }}>
-                    <legend className="float-none w-auto px-3" style={{textAlign: "center"}}><h3>Thông tin khách
-                        hàng</h3></legend>
-                    <table className="info-HanhNTM">
-                        <tr>
-                            <td>Tên khách hàng:</td>
-                            <td style={{paddingLeft: "30%", width: "70%"}}>{customers.name}</td>
-                        </tr>
-                        <tr>
-                            <td>Giới tính:</td>
-                            <td style={{paddingLeft: "30%"}}>{customers.gender ? "Nam" : "Nữ"}</td>
-                        </tr>
-                        <tr>
-                            <td>Số điện thoại:</td>
-                            <td style={{paddingLeft: "30%"}}>{customers.phone}</td>
-                        </tr>
-                        <tr>
+            <div id="information" className="container-fluid" style={{marginTop:"8%",width:"90%"}} >
+                <h2 className="sub-title"
+                    style={{textAlign: "center", marginTop: "90px", fontFamily: "Nunito",}}>THÔNG TIN KHÁCH HÀNG</h2>
+                <div className="row my-2" >
+                    <div className="col-lg-12">
+                        <div className="content">
 
-                            <>
-                                <td>Ngày sinh:</td>
-                                <td style={{paddingLeft: "30%"}}>{new Date(customers.birthday).toLocaleDateString('en-GB')}</td>
-                            </>
-                        </tr>
-                        <tr>
-                            <td>Email:</td>
-                            <td style={{paddingLeft: "30%"}}>{customers.email}</td>
-                        </tr>
-                        <tr>
-                            <td>Địa chỉ:</td>
-                            <td style={{paddingLeft: "30%"}}>{customers.address}</td>
-                        </tr>
-                    </table>
-                </fieldset>
-            </div>
+                            <Formik
+                            >
+                                <Form>
+                                    <div className="row" >
+                                        <div className="col-lg-6 col-sm-12 box-avatar">
+                                            <div className="avatar" >
+                                                <img
+                                                    src="https://inkythuatso.com/uploads/thumbnails/800/2023/03/6-anh-dai-dien-trang-inkythuatso-03-15-26-36.jpg"
+                                                    alt="Avatar User"
+                                                    style={{borderRadius: "50%", width: "50%"}}/>
+                                                {/*<h3> Khách hàng</h3>*/}
+                                            </div>
+                                        </div>
+                                        <div className="col-lg-6 col-sm-12">
+                                            <div className="content-information">
+                                                <div>
+                                                    <div className="mb-3">
+                                                        <label htmlFor="name" className="form-label">Tên nhân
+                                                            viên</label>
+                                                        <Field type="text" className="form-control"
+                                                               value={customers.name} readonly={true}/>
+                                                    </div>
+                                                    <div className="mb-3">
+                                                        <label htmlFor="name" className="form-label">Giới tính</label>
+                                                        <Field type="text" className="form-control"
+                                                               value={customers.gender ? "Nam" : "Nữ"} readonly={true}/>
+                                                    </div>
+                                                    <div className="mb-3">
+                                                        <label htmlFor="birthday" className="form-label">Ngày
+                                                            sinh</label>
+                                                        <Field type="date" className="form-control"
+                                                               value={customers.birthday}/>
+                                                    </div>
+                                                    <div className="mb-3">
+                                                        <label htmlFor="birthday" className="form-label">Số CCCD</label>
+                                                        <Field type="date" className="form-control"
+                                                               value={customers.identity}/>
+                                                    </div>
+                                                    <div className="mb-3">
+                                                        <label htmlFor="address" className="form-label">Địa
+                                                            chỉ</label>
+                                                        <Field type="text" className="form-control"
+                                                               value={customers.address}/>
+                                                    </div>
+                                                    <div className="mb-3">
+                                                        <label htmlFor="phone" className="form-label">Số điện
+                                                            thoại</label>
+                                                        <Field type="text" className="form-control"
+                                                               value={customers.phone}/>
 
-            <div className="container mt-5">
-                <div className="col-12 d-flex justify-content-center">
-                    <h2 className="mb-3">Chi tiết lịch sử mua hàng</h2>
-                </div>
+                                                    </div>
+                                                    <div className="mb-3">
+                                                        <label htmlFor="phone" className="form-label">Địa chỉ
+                                                            email</label>
+                                                        <Field type="email" className="form-control"
+                                                               value={customers.email}/>
+                                                    </div>
 
-                <div style={{minHeight: "250px"}}>
-                    <table className="border border-dark table table-hover table-layout">
-                        <thead>
-                        <tr>
-                            <th style={{ width: "10%"}}>#</th>
-                            <th style={{ width: "20%"}}>Ngày mua</th>
-                            <th style={{ width: "10%"}}>Giờ mua</th>
-                            <th style={{ width: "30%"}}>Sản phẩm mua</th>
-                            <th style={{ width: "10%"}}>Số lượng</th>
-                            <th style={{ width: "20%"}}>Số tiền(vnđ/sp)</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {histories.length !== 0 ? (
-                            histories.map((history, index) => {
-                                return (
-                                    <tr>
-                                        <td>{(index + 1)}</td>
-                                        <td>{new Date(history.dateOfOrder).toLocaleDateString('en-GB')}</td>
-                                        <td>{history.timeOfOrder}</td>
-                                        <td>{history.nameProduct}</td>
-                                        <td>{history.quantity}</td>
-                                        <td>{vnd.format(history.priceOfOrder)}</td>
-                                    </tr>
-                                )
-                            })) : (<tr>
-                            <td colSpan={6} style={{textAlign: "center"}}>Không tìm thấy!</td>
-                        </tr>)
-                        }
-                        </tbody>
-                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </Form>
+                            </Formik>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
+        </>
+
     )
-
 }
